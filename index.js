@@ -6,7 +6,7 @@ form.addEventListener('submit', e => handleSearch(e))
 //Function that handles fetching anime from API
 function handleSearch(e){
     e.preventDefault()
-    console.log('form submit')
+    
     let searchCriteria = document.querySelector('#searchCriteria').value
     fetch(`https://api.jikan.moe/v4/anime?q=${searchCriteria}&sfw`).then(response => response.json()).then(data => createCard(data))
 }
@@ -14,7 +14,7 @@ function handleSearch(e){
 // Function that creates display cards for searched criteria
 function createCard(data){
     let listOfSeries = data.data
-
+    console.log('cliked')
     //For each series in the array of series create elements for the card
     listOfSeries.forEach(series => {
         let list = document.querySelector('#generalList')
@@ -35,10 +35,23 @@ function createCard(data){
         }
         //Give card unique ID of the series' title
         card.setAttribute('id', `${title.innerText}`)
+        card.setAttribute('class', 'card')
     
-    
+        //Set an image for the series
+        let img = document.createElement('img')
+        img.setAttribute('src', `${series.images.jpg.image_url}`)
+        card.appendChild(img)
 
 
+        //Provide a summary of the series if available
+        let summary = document.createElement('p')
+        summary.innerText = series.synopsis
+        if (series.synopsis == null){
+            summary.innerText = 'No summary available'
+        }
+        card.appendChild(summary)
+
+        
 
 
     })

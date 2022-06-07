@@ -1,0 +1,30 @@
+*:before,
+*:after{
+    box-sizing: border-box;
+}
+
+
+.card {
+   
+    text-align: center;
+    border: grey solid 1px;
+    padding: 1rem;
+    width: 30rem;
+    height: 30rem;
+    display: inline-grid;
+    margin: 1rem 2rem;
+    box-shadow: 3px 4px #e04b52
+    
+  }
+
+  img{
+      justify-self: center;
+      height: 12rem;
+  }
+
+  p{
+      justify-self: center;
+      
+      word-wrap: break-word;
+      
+  }
