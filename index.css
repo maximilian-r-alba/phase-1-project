@@ -10,7 +10,7 @@
     border: grey solid 1px;
     padding: 1rem;
     width: 30rem;
-    height: 30rem;
+    height: 40rem;
     display: inline-grid;
     margin: 1rem 2rem;
     box-shadow: 3px 4px #e04b52
@@ -24,7 +24,14 @@
 
   p{
       justify-self: center;
-      
       word-wrap: break-word;
-      
+      height: auto;
+      overflow: auto;
+  }
+  .checked {
+    color: orange;
+  }
+  span{
+      display: table;
+      margin: 0 auto
   }

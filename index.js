@@ -3,22 +3,24 @@ let form = document.querySelector('#searchForm')
 form.addEventListener('submit', e => handleSearch(e))
 
 
+
 //Function that handles fetching anime from API
 function handleSearch(e){
     e.preventDefault()
     
     let searchCriteria = document.querySelector('#searchCriteria').value
-    fetch(`https://api.jikan.moe/v4/anime?q=${searchCriteria}&sfw`).then(response => response.json()).then(data => createCard(data))
+    fetch(`https://api.jikan.moe/v4/anime?q=naruto&sfw`).then(response => response.json()).then(data => createCard(data))
 }
 
 // Function that creates display cards for searched criteria
 function createCard(data){
     let listOfSeries = data.data
-    console.log('cliked')
+    
     //For each series in the array of series create elements for the card
     listOfSeries.forEach(series => {
         let list = document.querySelector('#generalList')
         let card = document.createElement('div')
+        
         list.appendChild(card)
         
         //Create title node
@@ -51,8 +53,24 @@ function createCard(data){
         }
         card.appendChild(summary)
 
-        
+        //Add stars for rating
+        let rating = document.createElement('ul')
+        card.appendChild(rating)
 
+        for (let i = 0; i<5; i++) { 
+            let star = document.createElement('i')
+            star.setAttribute('class', 'fa fa-star')
+            rating.appendChild(star)
+
+            //Change color of star if rated
+            star.addEventListener('click', e => {
+                star.classList.toggle('checked')
+            })
+   
+        }
+      
+
+        
 
     })
 
