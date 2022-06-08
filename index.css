@@ -33,5 +33,10 @@
   }
   span{
       display: table;
-      margin: 0 auto
+      padding-left: 0;
+      margin-left: 0;
+  }
+
+  .hide{
+      display: none
   }

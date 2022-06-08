@@ -56,6 +56,7 @@ function createCard(data){
         //Add stars for rating
         let rating = document.createElement('ul')
         card.appendChild(rating)
+        
 
         for (let i = 0; i<5; i++) { 
             let star = document.createElement('i')
@@ -66,12 +67,45 @@ function createCard(data){
             star.addEventListener('click', e => {
                 star.classList.toggle('checked')
             })
+            
    
         }
       
+        // Add button to add series to personal list
+        let saveBtn = document.createElement('button')
+        saveBtn.innerText = 'Add Series'
+        saveBtn.style.height = '2rem'
+        card.appendChild(saveBtn)
+
+        saveBtn.addEventListener('click', e => addSeries(e))
+
 
         
 
     })
 
+}
+//Add series to personal list
+function addSeries(e){
+    let series = e.target.parentNode
+    console.log('its gone')
+    let personalList = document.querySelector('#personalList')
+    personalList.appendChild(series)
+    
+    
+
+}
+
+form.querySelector('.hideShow').addEventListener('click',e => hideSearchResults(e))
+//Hide/Show Search Results
+function hideSearchResults(e){
+
+    document.querySelector('#generalList').classList.toggle('hide')
+    if (document.querySelector('#generalList').className === 'hide'){
+        document.querySelector('.hideShow').innerText = 'Show Search Results'
+    }
+    else{
+        document.querySelector('.hideShow').innerText = 'Hide Search Results'
+    }
+    
 }
