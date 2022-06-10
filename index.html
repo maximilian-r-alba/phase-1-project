@@ -14,12 +14,28 @@
     <form action="submit" id = 'searchForm'>
 
         <input type="text" placeholder="Title" id="searchCriteria">
-        <input type="submit" name="Seach" value = 'Search' id="">
-        <button class = 'hideShow'>Hide Search Results</button>
+        <input type="submit"  value = 'Search' id="">
+        
 
     </form>
-    <div id = 'generalList'></div>
-    <div id = 'personalList'></div>
+    <button class = 'hideShow' name = "search" >Hide search</button>
+    <button class = 'hideShow' name="saved">Show saved</button>
+    <label for="genre">Sort Genre</label>
+    <select name="genre" id="genre">
+
+        <option value="*">All</option>
+        <option value="Shojo">Shojo</option>
+        <option value="Shounen">Shounen</option>
+        <option value="Seinen">Seinen</option>
+        <option value="Josei">Josei</option>
+        <option value="Kodomo">Kodomo</option>
+
+    </select>
+<div id = 'searchAndSaved'>
+    <div id = 'searchList' class = 'list'></div>
+    <div id = 'savedList' class = 'list hide'></div>
+</div>
+    
 </body>
 <script src="index.js"></script>
 </html>

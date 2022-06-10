@@ -1,27 +1,33 @@
 // Select form, add event listener for searching anime
 let form = document.querySelector('#searchForm')
 form.addEventListener('submit', e => handleSearch(e))
-
-
+let searchList = document.querySelector('#searchList')
+let savedList = document.querySelector('#savedList')
 
 //Function that handles fetching anime from API
 function handleSearch(e){
     e.preventDefault()
     
     let searchCriteria = document.querySelector('#searchCriteria').value
-    fetch(`https://api.jikan.moe/v4/anime?q=naruto&sfw`).then(response => response.json()).then(data => createCard(data))
+    fetch(`https://api.jikan.moe/v4/anime?q=${searchCriteria}&sfw`).then(response => response.json()).then(data => createCard(data))
 }
 
 // Function that creates display cards for searched criteria
 function createCard(data){
     let listOfSeries = data.data
     
+    // console.log(data.data[0].demographics[0].name)
     //For each series in the array of series create elements for the card
     listOfSeries.forEach(series => {
-        let list = document.querySelector('#generalList')
-        let card = document.createElement('div')
         
-        list.appendChild(card)
+        let card = document.createElement('div')
+
+        //Set Demographic Genre for each series
+        card.setAttribute('demographic', '')
+        if(series.demographics.length !== 0 ){
+            card.setAttribute('demographic', `${series.demographics[0].name}`)
+        }
+        searchList.appendChild(card)
         
         //Create title node
         let title = document.createElement('h1')
@@ -85,27 +91,67 @@ function createCard(data){
     })
 
 }
-//Add series to personal list
-function addSeries(e){
-    let series = e.target.parentNode
-    console.log('its gone')
-    let personalList = document.querySelector('#personalList')
-    personalList.appendChild(series)
+//Sort by Genres
+let genreSort = document.querySelector('#genre')
+
+genreSort.addEventListener('input', () => sortLists())
+
+function sortLists(){
+    let searchSeries = searchList.childNodes
+    let savedSeries = savedList.childNodes
+    let seriesArray = ([...searchSeries].concat([...savedSeries]))
+
+
+    let filteredSeries = seriesArray.filter(series => handleFilter(series)) 
     
+ 
+    for (series of seriesArray){
+        series.classList.remove('hide')
+    }
+
+    for(series of filteredSeries){
+        series.classList.toggle('hide')
+
+    }
     
 
 }
+//Filters series into a list containing all series that do not match the selected genre
+function handleFilter(series){
+    
+    if(genreSort.value === '*'){
+        return false
+    }
+    return element.attributes.demographic.value !== genreSort.value
+}
 
-form.querySelector('.hideShow').addEventListener('click',e => hideSearchResults(e))
-//Hide/Show Search Results
-function hideSearchResults(e){
+//Add series to personal list
+function addSeries(e){
+    
+    let series = e.target.parentNode
+    savedList.appendChild(series)
+    
+}
 
-    document.querySelector('#generalList').classList.toggle('hide')
-    if (document.querySelector('#generalList').className === 'hide'){
-        document.querySelector('.hideShow').innerText = 'Show Search Results'
+//Hide and Show Search Results or Saved List
+let hideButtons = document.querySelectorAll('.hideShow')
+
+    //For each button in the hidebuttons array, add an event listener to hide the respsective list
+    hideButtons.forEach(button => button.addEventListener('click', e => hideSearchResults(button)))
+    
+    
+
+//Hide the respective list and change text of the respective button
+function hideSearchResults(button){
+    let listName = button.name+'List'
+    let list = document.querySelector(`#${listName}`)
+    
+    list.classList.toggle('hide')
+    if (list.classList.contains('hide')){
+        document.querySelector(`[name = ${button.name}]`).innerText = `Show ${button.name}`
     }
     else{
-        document.querySelector('.hideShow').innerText = 'Hide Search Results'
+        document.querySelector(`[name = ${button.name}]`).innerText = `Hide ${button.name}`
     }
     
 }
