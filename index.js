@@ -23,7 +23,7 @@ function createCard(data){
     for (series of [...savedList.childNodes]){
         existingSeries.push(series.id)
     }
-    console.log(existingSeries)
+    
     //For each series in the array of series create elements for the card
     listOfSeries.forEach(series => {
 
@@ -72,15 +72,13 @@ function createCard(data){
         card.appendChild(rating)
         
 
-        for (let i = 0; i<5; i++) { 
+        for (let i = 1; i<6; i++) { 
             let star = document.createElement('i')
             star.setAttribute('class', 'fa fa-star')
             rating.appendChild(star)
 
-            //Change color of star if rated
-            star.addEventListener('click', e => {
-                star.classList.toggle('checked')
-            })
+            //Change color of stars if rated
+            star.addEventListener('click', e => handleRating(e))
    
         }
       
@@ -98,7 +96,29 @@ function createCard(data){
             card.remove()
         }
     })
+
+function handleRating(e){
     
+    let star = e.target
+    let rating = [...star.parentNode.childNodes]
+    for (element of rating){
+        element.classList.remove('checked')
+    }
+    star.classList.toggle('checked')
+    
+    let index = 0
+    for (let i = 4; i>=0; i--){
+        if(rating[i].classList.contains('checked')){
+             index = i
+        }
+    }
+    for (element of rating){
+        if(rating.indexOf(element)<index){
+            element.classList.toggle('checked')
+        }
+    }
+
+}
 
 
     
