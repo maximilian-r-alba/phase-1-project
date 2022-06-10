@@ -169,6 +169,8 @@ function addSeries(e){
     
     let series = e.target.parentNode
     savedList.appendChild(series)
+    series.style.boxShadow = '10px 10px #e04b52';
+
     
 }
 

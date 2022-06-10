@@ -2,7 +2,9 @@
 *:after{
     box-sizing: border-box;
 }
-
+body{
+    background-color: rgba(157, 233, 229, 0.938);
+}
 
 .card {
    
@@ -13,8 +15,8 @@
     height: 40rem;
     display: inline-grid;
     margin: 1rem 2rem;
-    box-shadow: 3px 4px #e04b52
-    
+    /* box-shadow: 10px 10px #e04b52; */
+    background-color: azure;
   }
 
   #banner{
@@ -64,3 +66,6 @@
     text-align: center;
     
   }
+h2{
+    font-size: 30px;
+}
