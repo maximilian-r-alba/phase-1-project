@@ -15,10 +15,18 @@ function handleSearch(e){
 // Function that creates display cards for searched criteria
 function createCard(data){
     let listOfSeries = data.data
-    
-    // console.log(data.data[0].demographics[0].name)
+    //Prevent duplicates from being made by tracking IDs of all sereis
+    let existingSeries = []
+    for(series of [...searchList.childNodes]){
+        existingSeries.push(series.id)
+    }
+    for (series of [...savedList.childNodes]){
+        existingSeries.push(series.id)
+    }
+    console.log(existingSeries)
     //For each series in the array of series create elements for the card
     listOfSeries.forEach(series => {
+
         
         let card = document.createElement('div')
 
@@ -73,7 +81,6 @@ function createCard(data){
             star.addEventListener('click', e => {
                 star.classList.toggle('checked')
             })
-            
    
         }
       
@@ -86,10 +93,15 @@ function createCard(data){
         saveBtn.addEventListener('click', e => addSeries(e))
 
 
-        
-
+        //If series ID already exists, card is removed
+        if(existingSeries.includes(card.id)){
+            card.remove()
+        }
     })
+    
 
+
+    
 }
 //Sort by Genres
 let genreSort = document.querySelector('#genre')
