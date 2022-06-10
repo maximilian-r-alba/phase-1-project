@@ -17,6 +17,14 @@
     
   }
 
+  #banner{
+      border-radius: 50%;
+      width: 30%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
   img{
       justify-self: center;
       height: 12rem;
@@ -39,4 +47,20 @@
 
   .hide{
       display: none
+  }
+
+  .title{
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Gill Sans';
+    font-size: 50px;
+    text-shadow: 10px black;
+    color: rgba(0, 81, 255, 0.664)
+  }
+  .container {
+    position: relative;
+    text-align: center;
+    
   }

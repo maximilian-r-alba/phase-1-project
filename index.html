@@ -9,8 +9,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
-
+    <div class="container">
+        <img id = 'banner' src="https://www.otaquest.com/wp-content/uploads/2018/05/hero.1_3ogr37v4xx36xvdhi8hx4-1024x576.jpg"  alt="">
+        <br>
+        <div class= 'title'>Your Anime List</div>
+    </div>
     
+    <br>
+    <br>
+<div class = 'container'>
     <form action="submit" id = 'searchForm'>
 
         <input type="text" placeholder="Title" id="searchCriteria">
@@ -18,6 +25,7 @@
         
 
     </form>
+    
     <button class = 'hideShow' name = "search" >Hide search</button>
     <button class = 'hideShow' name="saved">Show saved</button>
     <label for="genre">Sort Genre</label>
@@ -31,9 +39,15 @@
         <option value="Kodomo">Kodomo</option>
 
     </select>
-<div id = 'searchAndSaved'>
-    <div id = 'searchList' class = 'list'></div>
-    <div id = 'savedList' class = 'list hide'></div>
+</div>
+
+<div class = 'container' id = 'searchAndSaved'>
+    <div id = 'searchList' class = 'list'>
+        <h2 id ='searchResultLabel' class = 'hide'></h2>
+    </div>
+    <div id = 'savedList' class = 'list hide'>
+        <h2>Saved Series</h2>
+    </div>
 </div>
     
 </body>

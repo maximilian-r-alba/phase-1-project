@@ -1,21 +1,24 @@
+
+let searchList = document.querySelector('#searchList')
+let savedList = document.querySelector('#savedList')
+
 // Select form, add event listener for searching anime
 let form = document.querySelector('#searchForm')
 form.addEventListener('submit', e => handleSearch(e))
-let searchList = document.querySelector('#searchList')
-let savedList = document.querySelector('#savedList')
+
 
 //Function that handles fetching anime from API
 function handleSearch(e){
     e.preventDefault()
-    
+    document.querySelector('#searchResultLabel').classList.remove('hide')
     let searchCriteria = document.querySelector('#searchCriteria').value
     fetch(`https://api.jikan.moe/v4/anime?q=${searchCriteria}&sfw`).then(response => response.json()).then(data => createCard(data))
 }
 
 // Function that creates display cards for searched criteria
 function createCard(data){
-    let listOfSeries = data.data
-    //Prevent duplicates from being made by tracking IDs of all sereis
+    let seriesArray = data.data
+    //Tracks IDs of series that exist before creating new cards
     let existingSeries = []
     for(series of [...searchList.childNodes]){
         existingSeries.push(series.id)
@@ -25,10 +28,12 @@ function createCard(data){
     }
     
     //For each series in the array of series create elements for the card
-    listOfSeries.forEach(series => {
+    seriesArray.forEach(series => {
 
         
         let card = document.createElement('div')
+        //Gives cards the class card
+        card.setAttribute('class', 'card')
 
         //Set Demographic Genre for each series
         card.setAttribute('demographic', '')
@@ -44,14 +49,15 @@ function createCard(data){
             title.innerText = series.title_english
             card.appendChild(title)
         }
-
+        //Title is set to default title if english title is not specified
         else{
             title.innerText = series.title
             card.appendChild(title)
         }
+
         //Give card unique ID of the series' title
         card.setAttribute('id', `${title.innerText}`)
-        card.setAttribute('class', 'card')
+        
     
         //Set an image for the series
         let img = document.createElement('img')
@@ -72,12 +78,12 @@ function createCard(data){
         card.appendChild(rating)
         
 
-        for (let i = 1; i<6; i++) { 
+        for (let i = 0; i<5; i++) { 
             let star = document.createElement('i')
             star.setAttribute('class', 'fa fa-star')
             rating.appendChild(star)
 
-            //Change color of stars if rated
+            //Rates the series by lighting up the appropriate amount of stars
             star.addEventListener('click', e => handleRating(e))
    
         }
@@ -91,12 +97,13 @@ function createCard(data){
         saveBtn.addEventListener('click', e => addSeries(e))
 
 
-        //If series ID already exists, card is removed
+        //If series ID already exists, card is removed to prevent duplicates
         if(existingSeries.includes(card.id)){
             card.remove()
         }
     })
 
+//Function displays all stars through the clicked star to show rating
 function handleRating(e){
     
     let star = e.target
