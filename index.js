@@ -148,11 +148,11 @@ function sortLists(){
     //filter series by demographics using handleFilter
     let filteredSeries = seriesArray.filter(series => handleFilter(series)) 
     
- 
+    //Make all series cards visible
     for (series of seriesArray){
         series.classList.remove('hide')
     }
-
+    //Hide series that don't match filter
     for(series of filteredSeries){
         series.classList.toggle('hide')
 
@@ -176,9 +176,52 @@ function addSeries(e){
     let series = e.target.parentNode
     savedList.appendChild(series)
     series.style.boxShadow = '10px 10px #e04b52';
-
+    e.target.remove()
     
+    //Create toolbar for replacement buttons
+    let toolBar = document.createElement('ul')
+    series.appendChild(toolBar)
+    
+   
+
+    //Replace add series button with a finish series button
+    let button = document.createElement('button')
+    button.innerText = "Finish Series"
+    button.style.height = '2rem'
+    button.style.width = '50%'
+    toolBar.appendChild(button)
+    button.addEventListener('click', e => watchedSeries(e))
+
+    //Add a remove from list button
+    let rmvBtn = document.createElement('button')
+    rmvBtn.innerText = "Remove"
+    rmvBtn.style.height = '2rem'
+    rmvBtn.style.width = '50%'
+    toolBar.appendChild(rmvBtn)
+    rmvBtn.addEventListener('click', e => e.target.parentNode.parentNode.remove())
+
+
 }
+
+//Function grays out a watched series and moves it to the bottom of the list, and does the inverse upon rewatch
+function watchedSeries(e){
+
+    let series = e.target.parentNode.parentNode
+    let top = savedList.querySelector('.card')
+     series.classList.toggle('watched')
+     if (e.target.innerText === "Rewatch?"){
+         e.target.innerText = 'Finish Series'
+         savedList.insertBefore(series, top)
+     }
+
+     else{
+         e.target.innerText = "Rewatch?"
+         savedList.appendChild(series)
+     }
+     
+ 
+ }
+
 
 //Hide and Show Search Results or Saved List
 let toggleButtons = document.querySelectorAll('.hideShow')
