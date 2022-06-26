@@ -27,7 +27,7 @@ function handleSearch(e){
     
     //Append label after search list is reset
     searchList.appendChild(label)
-
+    label.style.fontFamily = 'Lucida Console'
    
     //Make label display what was searched
     if (searchCriteria !== ''){
@@ -268,6 +268,7 @@ function toggleTab(button){
         tabs[i].classList.add('hide')
     }
     list.classList.toggle('hide')
+    document.querySelector('body').style.backgroundColor = button.style.backgroundColor
 
    
     

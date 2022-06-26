@@ -73,3 +73,9 @@ h2{
 .watched{
     filter: brightness(70%)
   }
+
+.hideShow{
+    border-style: groove;
+    border-width: 3px;
+    font-size: 20px;
+}
