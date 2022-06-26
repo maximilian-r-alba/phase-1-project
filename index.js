@@ -10,8 +10,34 @@ form.addEventListener('submit', e => handleSearch(e))
 //Function that handles fetching anime from API
 function handleSearch(e){
     e.preventDefault()
-    document.querySelector('#searchResultLabel').classList.remove('hide')
     let searchCriteria = document.querySelector('#searchCriteria').value
+
+    //Create a search label
+    let label = document.createElement('h2')
+    label.setAttribute('id', 'searchResultLabel')
+    
+
+    //Reset search results
+    if (searchList.childNodes.length !== 0){
+        while(searchList.firstChild){
+            searchList.removeChild(searchList.firstChild)
+        }
+
+    }
+    
+    //Append label after search list is reset
+    searchList.appendChild(label)
+
+   
+    //Make label display what was searched
+    if (searchCriteria !== ''){
+        label.innerText = `Search results for ${searchCriteria}`
+   }
+    else{
+        label.innerText = 'Search Results'
+    }
+
+    //Fetch series from api, create cards for each series
     fetch(`https://api.jikan.moe/v4/anime?q=${searchCriteria}&sfw`).then(response => response.json()).then(data => createCard(data))
 }
 
