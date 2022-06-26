@@ -175,24 +175,25 @@ function addSeries(e){
 }
 
 //Hide and Show Search Results or Saved List
-let hideButtons = document.querySelectorAll('.hideShow')
+let toggleButtons = document.querySelectorAll('.hideShow')
 
     //For each button in the hidebuttons array, add an event listener to hide the respsective list
-    hideButtons.forEach(button => button.addEventListener('click', e => hideSearchResults(button)))
+    toggleButtons.forEach(button => button.addEventListener('click', e => toggleTab(button)))
     
     
 
+
 //Hide the respective list and change text of the respective button
-function hideSearchResults(button){
+function toggleTab(button){
     let listName = button.name+'List'
     let list = document.querySelector(`#${listName}`)
-    
+
+    let tabs = document.getElementsByClassName('list')
+    for (i = 0; i<tabs.length; i++){
+        tabs[i].classList.add('hide')
+    }
     list.classList.toggle('hide')
-    if (list.classList.contains('hide')){
-        document.querySelector(`[name = ${button.name}]`).innerText = `Show ${button.name}`
-    }
-    else{
-        document.querySelector(`[name = ${button.name}]`).innerText = `Hide ${button.name}`
-    }
+
+   
     
 }
