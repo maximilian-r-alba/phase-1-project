@@ -163,11 +163,11 @@ genreSort.addEventListener('input', () => sortLists())
 
 function sortLists(){
    //Spread operator to convert NodeList to array, slice to remove the header from the array
-    let searchSeries = [...searchList.childNodes].slice(3)
-     
+    let searchSeries = [...searchList.childNodes].slice(1)
+     console.log(searchSeries)
     //Spread operator to convert NodeList to array, slice to remove the header from the array
     let savedSeries = [...savedList.childNodes].slice(3)
-    
+    console.log(savedSeries)
     //An array that contains all series, both searched and saved
     let seriesArray = (searchSeries.concat(savedSeries))
 
