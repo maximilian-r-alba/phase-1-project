@@ -136,11 +136,16 @@ let genreSort = document.querySelector('#genre')
 genreSort.addEventListener('input', () => sortLists())
 
 function sortLists(){
-    let searchSeries = searchList.childNodes
-    let savedSeries = savedList.childNodes
-    let seriesArray = ([...searchSeries].concat([...savedSeries]))
+   //Spread operator to convert NodeList to array, slice to remove the header from the array
+    let searchSeries = [...searchList.childNodes].slice(3)
+     
+    //Spread operator to convert NodeList to array, slice to remove the header from the array
+    let savedSeries = [...savedList.childNodes].slice(3)
+    
+    //An array that contains all series, both searched and saved
+    let seriesArray = (searchSeries.concat(savedSeries))
 
-
+    //filter series by demographics using handleFilter
     let filteredSeries = seriesArray.filter(series => handleFilter(series)) 
     
  
@@ -157,11 +162,12 @@ function sortLists(){
 }
 //Filters series into a list containing all series that do not match the selected genre
 function handleFilter(series){
-    
+   
     if(genreSort.value === '*'){
         return false
     }
-    return element.attributes.demographic.value !== genreSort.value
+    
+    return series.attributes.demographic.value !== genreSort.value
 }
 
 //Add series to personal list
