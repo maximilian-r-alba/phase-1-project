@@ -36,7 +36,7 @@ Upon launch, the webpage will appear as below.
 <br>
 3.Select the "Your List" tab in the upper left corner
 <br>
-@import "images/Your List.png"
+<img src = 'images/Your List.png'>
 <br>
 You have added a series to Your Anime List
 <br>
@@ -48,3 +48,24 @@ You have added a series to Your Anime List
 1. Select the Finish Series button
     The series card will be grayed out and pushed to the bottom of the watch list.
 <img src = 'images/Watched Series.png' width = "450px">
+
+<br>
+
+### Rate a Series
+1. Select the corresponding star for your rating. The rating will be displayed on the card
+<img src = 'images/Rate Series.png' width = '450px'>
+
+<br>
+
+### Sort by Demographic Audience
+1. Using the options tab, select what demographic you want to view
+<br>
+<img src = 'images/Demographic Example.png' width = '450px'>
+<br>
+2. Only the series with the respecitve demographic will be shown.
+*The filter will apply to both the search results and your personal series list
+**At this time, series without a demographic attribute listed are also removed
+
+<br>
+<img src = 'images/Demographic Sorted.png' width = '450 px'>
+
