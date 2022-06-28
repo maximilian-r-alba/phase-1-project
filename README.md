@@ -16,8 +16,7 @@ Your Anime List is a personal app meant to be a simple way to keep track of your
 ### Add/Remove a Series
 Upon launch, the webpage will appear as below.
 
-![homescreen](images/Your%20Anime%20List%20Home%20Screen.png | width = 100)
-@import "images/Your%20Anime%20List%20Home%20Screen.png" {width="450x"}
+<img src="images/Your%20Anime%20List%20Home%20Screen.png" width=450px>
 
 
 <br>
@@ -26,7 +25,9 @@ Upon launch, the webpage will appear as below.
 
 1. Begin by searching for an anime using the search form
 <br>
-@import "images/Add Series.png" {width="450px"}
+
+<img src="images/Add Series.png" width ="450px">
+
 
 <br>
 <br>
@@ -39,11 +40,11 @@ Upon launch, the webpage will appear as below.
 <br>
 You have added a series to Your Anime List
 <br>
+<img src = 'images/Your Anime List.png' width = '450px'>
 
-@import "images/Your Anime List.png" {width="450px"}
 
 ##### Mark a Series as Watched
 
 1. Select the Finish Series button
     The series card will be grayed out and pushed to the bottom of the watch list.
-@import "images/Watched Series.png" {width="450px"}
+<img src = 'images/Watched Series.png' width = "450px">
