@@ -16,6 +16,7 @@ Your Anime List is a personal app meant to be a simple way to keep track of your
 ### Add/Remove a Series
 Upon launch, the webpage will appear as below.
 
+![homescreen](images/Your%20Anime%20List%20Home%20Screen.png | width = 100)
 @import "images/Your%20Anime%20List%20Home%20Screen.png" {width="450x"}
 
 
