@@ -69,3 +69,5 @@ You have added a series to Your Anime List
 <br>
 <img src = 'images/Demographic Sorted.png' width = '450 px'>
 
+# Future Additions
+On this version, Your Anime List is a simple watch list application. Some kinks including handling missing demographic attributes, could be addressed in future updates. Future additional features could include allowing users to edit series descriptions in their own words, allowing users to add series not found on the api, and incorporating use of a json-server to allow for maintenance of the list.
